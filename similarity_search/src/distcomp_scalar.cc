@@ -20,6 +20,7 @@
 #include <limits>
 #include <algorithm>
 
+#define WARN(exp) ("WARNING: " exp)
 
 namespace similarity {
 
