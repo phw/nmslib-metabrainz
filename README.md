@@ -2,7 +2,10 @@
 
 The MetaBrainz Foundation has projects that require this library and the main version of this repository
 appears to be abandoned. We've applied one fix to allow the package to build on Python 3.12 and built
-a new package from it: 
+a new package from it: [nmslib-metabrainz](http://pypi.python.org/pypi/nmslib-metabrainz).
+
+We don't want to continue being the maintainer of this module -- this is a stop-gap measure until a new maintainer
+is found.
 
 [![Pypi version](https://img.shields.io/pypi/v/nmslib.svg)](http://pypi.python.org/pypi/nmslib-metabrainz)
 [![Downloads](https://pepy.tech/badge/nmslib)](https://pepy.tech/project/nmslib)
