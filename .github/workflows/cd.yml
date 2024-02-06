@@ -21,6 +21,6 @@ jobs:
       - name: Install dependencies
         run: pip install -r python_bindings/requirements.txt
       - name: Build package
-        run: python -m build
+        run: cd python_bindings && python -m build
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
