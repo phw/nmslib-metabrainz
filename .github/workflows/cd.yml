@@ -35,6 +35,9 @@ jobs:
           CIBW_BUILD: cp38-manylinux_x86_64
           CIBW_BUILD_VERBOSITY: 2
 
+      - name: list
+        run: find . -print
+
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
