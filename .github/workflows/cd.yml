@@ -33,6 +33,7 @@ jobs:
         env: 
           CIBW_SKIP: cp37-manylinux_x86_64
           CIBW_BUILD: cp38-manylinux_x86_64
+          CIBW_BUILD_VERBOSITY: 2
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
