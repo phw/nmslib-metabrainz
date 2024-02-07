@@ -1,4 +1,4 @@
-name: Continous Delivery
+name: Continuous Delivery
 
 on:
   release:
@@ -8,6 +8,9 @@ jobs:
   deploy:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
+    environment:
+      name: pypi
+      url: https://pypi.org/p/nmslib-metabrainz
     permissions:
       contents: read
       id-token: write
