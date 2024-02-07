@@ -7,44 +7,38 @@ on:
 
 jobs:
   build:
-    name: Build wheels on ${{ matrix.os }}
+    name: Build wheels on ${{ matrix.os }} Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
-    environment:
-      name: pypi
-      url: https://pypi.org/p/nmslib-metabrainz
-    permissions:
-      contents: read
     strategy:
       matrix:
         os: [ubuntu-20.04, windows-2019, macOS-15]
-
+        python-version: ['3.9', '3.10', '3.11', '3.12']
     steps:
       - uses: actions/checkout@v4
 
-      # Used to host cibuildwheel
-      - uses: actions/setup-python@v3
-
-      - name: Install cibuildwheel
-        run: python -m pip install cibuildwheel==2.16.5
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
 
       - name: Build wheels
-        run: python -m cibuildwheel python_bindings
-#env:
-#CIBW_BUILD: cp310-macosx_x86_64
-#CIBW_BUILD: cp310-win_amd64
-#CIBW_BUILD: cp37-manylinux_x86_64
+        run: |
+          cd python_bindings
+          pip wheel .
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: nmslib_metabrainz-wheels-${{ runner.os }}
-          path: dist/*.whl
+          name: nmslib_metabrainz-wheels-${{ runner.os }}-${{ matrix.python-version }}
+          path: python_bindings/nmslib_metabrainz-*.whl
 
   deploy:
     runs-on: ubuntu-latest
     if: startsWith(github.ref, 'refs/tags/')
     needs:
       - build
+    environment:
+      name: pypi
+      url: https://pypi.org/p/nmslib-metabrainz
     permissions:
       id-token: write  # required for PyPI upload
     steps:
