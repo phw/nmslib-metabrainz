@@ -6,7 +6,8 @@ on:
     types: [published]
 
 jobs:
-  build:
+
+  build_wheels:
     name: Build wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     strategy:
@@ -33,11 +34,24 @@ jobs:
         with:
           name: nmslib_metabrainz-wheels-${{ runner.os }}
           path: wheelhouse/*.whl
+  
+  build_sdist:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build sdist
+        run: pipx run build --sdist
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: nmslib_metabrainz-sdist
+          path: dist/*.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
-    needs:
-      - build
+    needs: [build_wheels, build_sdist]
     environment:
       name: pypi
       url: https://pypi.org/p/nmslib-metabrainz
@@ -46,7 +60,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          pattern: nmslib_metabrainz-wheels-*
+          pattern: nmslib_metabrainz-*
           path: dist/
           merge-multiple: true
       - name: Prepare distributions
