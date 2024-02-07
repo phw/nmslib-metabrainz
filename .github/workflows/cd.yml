@@ -37,4 +37,4 @@ jobs:
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          packages-dir: ./python_bindings/wheelhouse/*.whl
+          packages-dir: ./wheelhouse/*.whl
