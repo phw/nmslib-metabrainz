@@ -43,7 +43,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: nmslib_metabrainz-sdist
-          path: dist/*.tar.gz
+          path: python_bindings/dist/*.tar.gz
 
   deploy:
     runs-on: ubuntu-latest
