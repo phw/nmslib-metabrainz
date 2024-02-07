@@ -34,6 +34,7 @@ jobs:
           CIBW_SKIP: cp35-manylinux_x86_64,cp36-manylinux_x86_64,cp37-manylinux_x86_64
 #CIBW_BUILD: cp310-macosx_x86_64
 #CIBW_BUILD: cp310-win_amd64
+#CIBW_BUILD: cp37-manylinux_x86_64
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@release/v1
