@@ -1,6 +1,7 @@
 name: Continuous Delivery
 
 on:
+  push:
   release:
     types: [published]
 
