@@ -1,6 +1,7 @@
 build
 setuptools>=69.0.3
 numpy>=1.26.4
+numpy==1.25.2; sys_platform == 'darwin'
 pybind11>=2.2.3
 sphinx_rtd_theme
 

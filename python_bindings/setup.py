@@ -13,6 +13,7 @@ if sys.platform.startswith("win") and struct.calcsize("P") * 8 == 32:
 
 dep_list = ['pybind11>=2.2.3', 'psutil']
 dep_list.append("numpy>=1.10.0 ; python_version>='3.5'")
+dep_list.append("numpy==1.25.2; sys_platform == 'darwin'")
 
 py_version = tuple([int(s) for s in platform.python_version().split('.')])[0:2]
 if py_version != (2, 7) and py_version < (3, 5):
